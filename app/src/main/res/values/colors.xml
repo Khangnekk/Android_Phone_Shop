@@ -4,10 +4,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name = "pink">#ff5ccb</color>
     <color name = "blue">#0090FF</color>
-    <color name = "backgroundColor">#FFFCFC</color>
+    <color name = "backgroundColor">#FCFFFC</color>
     <color name = "textHeading">#303030</color>
     <color name = "a">#FFFFFF</color>
     <color name="colorPrimary">#00BC71</color> <!-- Primary color -->
     <color name="colorPrimaryDark">#000</color> <!-- Darker shade of primary color -->
-    <color name="colorAccent">#E6DEE0</color> <!-- Accent color -->
+    <color name="colorAccent">#000000</color> <!-- Accent color -->
 </resources>
