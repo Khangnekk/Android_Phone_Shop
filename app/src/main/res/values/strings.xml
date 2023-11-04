@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PhoneShop</string>
+    <string name="information_product">Thông tin sản phẩm</string>
+    <string name="increment">+</string>
+    <string name="decrement">-</string>
+    <string name="information_shop">Cell Phone x - Nơi gửi chọn niềm tin</string>
+    <string name="information_shop1">Mail: @cellphonex@gmail.com.vn - SĐT: 0987654321 </string>
 </resources>
