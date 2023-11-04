@@ -11,7 +11,7 @@ public class Phone implements Serializable {
     private String description;
     private boolean inStock;
     private String imageURL;
-    private ArrayList<OrderDetails> orderDetails; // Quan hệ một-nhiều với OrderDetail
+    private ArrayList<OrderDetails> orderDetails;
 
     public Phone() {
         orderDetails = new ArrayList<>();
