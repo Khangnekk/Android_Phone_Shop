@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace = "com.fptugroup6.phoneshop"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.fptugroup6.phoneshop"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
