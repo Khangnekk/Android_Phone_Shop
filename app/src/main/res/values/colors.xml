@@ -3,11 +3,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name = "pink">#ff5ccb</color>
-    <color name = "blue">#00f0ff</color>
+    <color name = "blue">#0090FF</color>
     <color name = "backgroundColor">#FFFCFC</color>
-    <color name = "textHeading">#12A512</color>
-    <color name = "a">#2eb9c1</color>
-    <color name="colorPrimary">#4CAF50</color> <!-- Primary color -->
-    <color name="colorPrimaryDark">#388E3C</color> <!-- Darker shade of primary color -->
-    <color name="colorAccent">#8BC34A</color> <!-- Accent color -->
+    <color name = "textHeading">#303030</color>
+    <color name = "a">#FFFFFF</color>
+    <color name="colorPrimary">#00BC71</color> <!-- Primary color -->
+    <color name="colorPrimaryDark">#000</color> <!-- Darker shade of primary color -->
+    <color name="colorAccent">#E6DEE0</color> <!-- Accent color -->
 </resources>
