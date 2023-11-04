@@ -15,27 +15,34 @@
         android:theme="@style/Theme.PhoneShop"
         tools:targetApi="34">
         <activity
+            android:name=".activity.BillingActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.Cart"
             android:exported="false" />
         <activity
             android:name=".activity.DetailProduct"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".activity.MainActivity"
-            android:exported="true"></activity>
-        <activity android:name=".activity.Login" android:exported="true"/>
+            android:exported="true" />
+        <activity
+            android:name=".activity.Login"
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <activity android:name=".activity.Register" android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
+        <activity
+            android:name=".activity.Register"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
