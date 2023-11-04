@@ -1,7 +1,8 @@
 package com.fptugroup6.phoneshop.model;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Messages {
+public class Messages  implements Serializable {
     private int messageID;
     private String senderUsername;
     private String receiverUsername;

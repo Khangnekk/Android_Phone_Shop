@@ -1,6 +1,8 @@
 package com.fptugroup6.phoneshop.model;
 
-public class OrderDetails {
+import java.io.Serializable;
+
+public class OrderDetails  implements Serializable {
         private int orderDetailID;
         private int orderID;
         private int phoneID;

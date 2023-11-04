@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class MessageDbContext extends DBContext{
     @Override
     public void insert(Object model) {
-        
+
     }
 
     @Override

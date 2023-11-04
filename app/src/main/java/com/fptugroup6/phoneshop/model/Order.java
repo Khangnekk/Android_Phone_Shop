@@ -1,8 +1,9 @@
 package com.fptugroup6.phoneshop.model;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Order {
+public class Order  implements Serializable {
     private int orderID;
     private String username;
     private Date orderDate;
