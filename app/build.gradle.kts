@@ -74,4 +74,5 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation("com.microsoft.sqlserver:mssql-jdbc:9.4.0.jre8")
 }
