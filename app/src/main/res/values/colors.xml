@@ -7,4 +7,7 @@
     <color name = "backgroundColor">#FFFCFC</color>
     <color name = "textHeading">#12A512</color>
     <color name = "a">#2eb9c1</color>
+    <color name="colorPrimary">#4CAF50</color> <!-- Primary color -->
+    <color name="colorPrimaryDark">#388E3C</color> <!-- Darker shade of primary color -->
+    <color name="colorAccent">#8BC34A</color> <!-- Accent color -->
 </resources>
