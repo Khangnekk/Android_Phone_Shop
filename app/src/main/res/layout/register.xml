@@ -37,7 +37,7 @@
         app:layout_constraintWidth_percent=".8" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/txtPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -50,7 +50,7 @@
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
+        app:layout_constraintTop_toBottomOf="@+id/txtUsername"
         app:layout_constraintWidth_percent=".8" />
 
     <EditText
@@ -67,11 +67,11 @@
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
+        app:layout_constraintTop_toBottomOf="@+id/txtUsername"
         app:layout_constraintWidth_percent=".8" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/txtUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -92,7 +92,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/btn"
-        android:onClick="signup"
         android:text="Sign Up"
         android:textColor="@color/a"
         android:textSize="25dp"
@@ -116,10 +115,10 @@
         app:layout_constraintVertical_bias="0.503" />
 
     <TextView
+        android:id="@+id/txtSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:onClick="login"
         android:text="Sign In"
         android:textColor="@color/textHeading"
         android:textSize="20dp"

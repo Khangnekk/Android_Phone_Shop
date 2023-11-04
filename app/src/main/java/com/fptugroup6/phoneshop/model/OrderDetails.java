@@ -2,7 +2,7 @@ package com.fptugroup6.phoneshop.model;
 
 import java.io.Serializable;
 
-public class OrderDetails  implements Serializable {
+public class OrderDetails {
         private int orderDetailID;
         private int orderID;
         private int phoneID;

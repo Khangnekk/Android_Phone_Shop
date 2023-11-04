@@ -2,7 +2,7 @@ package com.fptugroup6.phoneshop.dal;
 
 import java.util.ArrayList;
 
-public class AccountDbContext extends DBContext{
+public class MessageDBContext extends DBContext{
     @Override
     public void insert(Object model) {
 

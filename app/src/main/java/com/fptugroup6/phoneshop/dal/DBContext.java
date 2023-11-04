@@ -1,5 +1,7 @@
 package com.fptugroup6.phoneshop.dal;
 
+import android.util.Log;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -12,15 +14,20 @@ public abstract class DBContext<T> {
 
     public DBContext() {
         try {
+            Log.e("Accountx","OK 3.1");
             String username = "Khangnek";
             String password = "123";
-            String url = "jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=PhoneStore";
+            String url = "jdbc:sqlserver://MSI:1433;databaseName=PhoneStore";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection =  DriverManager.getConnection(url,username,password);
+            Log.e("Accountx","OK 3.3");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Log.e("Accountx","!OK 3.3");
         } catch (SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Log.e("Accountx","!OK 3.4: "+ex);
+            ex.printStackTrace();
         }
         
     }

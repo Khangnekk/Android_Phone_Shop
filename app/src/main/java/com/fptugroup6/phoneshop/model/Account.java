@@ -1,9 +1,14 @@
 package com.fptugroup6.phoneshop.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Account implements Serializable {
+public class Account{
     private String username;
     private String password;
     private String email;
@@ -59,4 +64,5 @@ public class Account implements Serializable {
     public void setOrders(ArrayList<Order> orders) {
         this.orders = orders;
     }
+
 }
