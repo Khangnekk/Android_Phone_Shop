@@ -1,103 +1,94 @@
 package com.fptugroup6.phoneshop.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Phone implements Serializable {
-    public String name;
-    public String color;
-    public String price;
-    public String screen;
-    public String storage;
+    private int phoneID;
+    private String modelName;
+    private String manufacturer;
+    private double price;
+    private String description;
+    private boolean inStock;
+    private String imageURL;
+    private ArrayList<OrderDetails> orderDetails; // Quan hệ một-nhiều với OrderDetail
 
-    public String description1;
-    public String description2;
-    public String description3;
+    public Phone() {
+        orderDetails = new ArrayList<>();
+    }
 
-    public String presentEvent;
-
-    public Phone(String urlImage, String name, String color, String price, String screen, String storage, String description1, String description2, String description3, String presentEvent) {
-        this.name = name;
-        this.color = color;
+    public Phone(int phoneID, String modelName, String manufacturer, double price, String description, boolean inStock, String imageURL) {
+        this.phoneID = phoneID;
+        this.modelName = modelName;
+        this.manufacturer = manufacturer;
         this.price = price;
-        this.screen = screen;
-        this.storage = storage;
-        this.description1 = description1;
-        this.description2 = description2;
-        this.description3 = description3;
-        this.presentEvent = presentEvent;
+        this.description = description;
+        this.inStock = inStock;
+        this.imageURL = imageURL;
+        orderDetails = new ArrayList<>();
     }
 
-
-
-    public String getName() {
-        return name;
+    public int getPhoneID() {
+        return phoneID;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPhoneID(int phoneID) {
+        this.phoneID = phoneID;
     }
 
-    public String getColor() {
-        return color;
+    public String getModelName() {
+        return modelName;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
     }
 
-    public String getPrice() {
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public String getScreen() {
-        return screen;
+    public String getDescription() {
+        return description;
     }
 
-    public void setScreen(String screen) {
-        this.screen = screen;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getStorage() {
-        return storage;
+    public boolean isInStock() {
+        return inStock;
     }
 
-    public void setStorage(String storage) {
-        this.storage = storage;
+    public void setInStock(boolean inStock) {
+        this.inStock = inStock;
     }
 
-    public String getDescription1() {
-        return description1;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setDescription1(String description1) {
-        this.description1 = description1;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
-    public String getDescription2() {
-        return description2;
+    public ArrayList<OrderDetails> getOrderDetails() {
+        return orderDetails;
     }
 
-    public void setDescription2(String description2) {
-        this.description2 = description2;
-    }
-
-    public String getDescription3() {
-        return description3;
-    }
-
-    public void setDescription3(String description3) {
-        this.description3 = description3;
-    }
-
-    public String getPresentEvent() {
-        return presentEvent;
-    }
-
-    public void setPresentEvent(String presentEvent) {
-        this.presentEvent = presentEvent;
+    public void setOrderDetails(ArrayList<OrderDetails> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 }
