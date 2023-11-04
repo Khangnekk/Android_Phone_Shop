@@ -226,10 +226,10 @@
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_confirm"
-                android:paddingStart="10dp"
-                android:paddingLeft="10dp"
-                android:paddingEnd="10dp"
-                android:paddingRight="10dp"
+                android:paddingStart="30dp"
+                android:paddingLeft="30dp"
+                android:paddingEnd="30dp"
+                android:paddingRight="30dp"
                 android:text="Confirm"
                 android:textColor="@color/a" />
         </LinearLayout>
