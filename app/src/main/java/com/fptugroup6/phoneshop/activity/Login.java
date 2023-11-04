@@ -1,9 +1,11 @@
-package com.fptugroup6.phoneshop;
+package com.fptugroup6.phoneshop.activity;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.fptugroup6.phoneshop.R;
 
 public class Login extends AppCompatActivity {
     @Override

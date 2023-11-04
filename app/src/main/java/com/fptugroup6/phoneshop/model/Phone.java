@@ -1,4 +1,4 @@
-package com.fptugroup6.phoneshop;
+package com.fptugroup6.phoneshop.model;
 
 import java.io.Serializable;
 

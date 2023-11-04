@@ -1,4 +1,4 @@
-package com.fptugroup6.phoneshop;
+package com.fptugroup6.phoneshop.dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

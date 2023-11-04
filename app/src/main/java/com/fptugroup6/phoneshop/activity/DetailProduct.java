@@ -1,4 +1,4 @@
-package com.fptugroup6.phoneshop;
+package com.fptugroup6.phoneshop.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+
+import com.fptugroup6.phoneshop.R;
 
 import java.util.ArrayList;
 
