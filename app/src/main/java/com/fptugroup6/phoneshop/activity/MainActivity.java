@@ -1,8 +1,10 @@
-package com.fptugroup6.phoneshop;
+package com.fptugroup6.phoneshop.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.fptugroup6.phoneshop.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -10,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
     }
 }
