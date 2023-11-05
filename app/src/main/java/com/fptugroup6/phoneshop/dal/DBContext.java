@@ -17,7 +17,7 @@ public abstract class DBContext<T> {
             Log.e("Accountx","OK 3.1");
             String username = "Khangnek";
             String password = "123";
-            String url = "jdbc:sqlserver://MSI:1433;databaseName=PhoneStore";
+            String url = "jdbc:sqlserver://MSI:1433;databaseName=PhoneStore;encrypt=true;trustServerCertificate=true;";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection =  DriverManager.getConnection(url,username,password);
             Log.e("Accountx","OK 3.3");
