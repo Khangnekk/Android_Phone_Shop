@@ -12,8 +12,7 @@ import com.fptugroup6.phoneshop.R;
 import com.fptugroup6.phoneshop.api.ApiClient;
 import com.fptugroup6.phoneshop.api.ApiService;
 import com.fptugroup6.phoneshop.model.Account;
-import android.os.Handler;
-import android.os.Looper;
+
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -31,13 +30,14 @@ public class Login extends AppCompatActivity {
         TextView txtUsername = findViewById(R.id.txtUsername);
         TextView txtPassword = findViewById(R.id.txtPassword);
         Button btnSignIn = findViewById(R.id.btnSignIn);
+
         apiService = ApiClient.getClient().create(ApiService.class);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = txtUsername.getText().toString();
-                String password = txtPassword.getText().toString();
+                String username = txtUsername.getText().toString().trim();
+                String password = txtPassword.getText().toString().trim();
                 Account accountRaw = new Account();
                 accountRaw.setUsername(username);
                 accountRaw.setPassword(password);
