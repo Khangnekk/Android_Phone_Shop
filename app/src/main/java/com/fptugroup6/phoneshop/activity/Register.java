@@ -19,13 +19,11 @@ public class Register extends AppCompatActivity {
         TextView btnSignIn = findViewById(R.id.txtSignIn);
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 startActivity(new Intent(Register.this,Login.class));
             }
         });
-    }
-    public void signup(View view) {
-        startActivity(new Intent(Register.this,MainActivity.class));
     }
     public void login(View view){
         startActivity(new Intent(Register.this,Login.class));
