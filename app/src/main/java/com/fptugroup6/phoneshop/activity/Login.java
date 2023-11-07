@@ -52,10 +52,14 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(getApplicationContext(),"Login Success: "+response.body().getEmail(), Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent();
-                    intent.setClass(Login.this, MainActivity.class);
-                    startActivity(intent);
+                    if(response.body().getUsername()!=null){
+                        Toast.makeText(getApplicationContext(),"Login Success: "+response.body().getEmail(), Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent();
+                        intent.setClass(Login.this, MainActivity.class);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Username or password not match: "+response.body().getEmail(), Toast.LENGTH_LONG).show();
+                    }
                 }else{
                     Toast.makeText(getApplicationContext(),"Login Fail", Toast.LENGTH_LONG).show();
                 }

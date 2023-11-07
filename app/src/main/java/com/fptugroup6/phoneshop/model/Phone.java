@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Phone implements Serializable {
-    private int phoneID;
+    private int phoneId;
     private String modelName;
     private String manufacturer;
     private double price;
     private String description;
     private boolean inStock;
-    private String imageURL;
+    private String imageUrl;
     private ArrayList<OrderDetails> orderDetails;
 
     public Phone() {
@@ -18,22 +18,22 @@ public class Phone implements Serializable {
     }
 
     public Phone(int phoneID, String modelName, String manufacturer, double price, String description, boolean inStock, String imageURL) {
-        this.phoneID = phoneID;
+        this.phoneId = phoneID;
         this.modelName = modelName;
         this.manufacturer = manufacturer;
         this.price = price;
         this.description = description;
         this.inStock = inStock;
-        this.imageURL = imageURL;
+        this.imageUrl = imageURL;
         orderDetails = new ArrayList<>();
     }
 
-    public int getPhoneID() {
-        return phoneID;
+    public int getPhoneId() {
+        return phoneId;
     }
 
-    public void setPhoneID(int phoneID) {
-        this.phoneID = phoneID;
+    public void setPhoneId(int phoneId) {
+        this.phoneId = phoneId;
     }
 
     public String getModelName() {
@@ -76,12 +76,12 @@ public class Phone implements Serializable {
         this.inStock = inStock;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public ArrayList<OrderDetails> getOrderDetails() {
