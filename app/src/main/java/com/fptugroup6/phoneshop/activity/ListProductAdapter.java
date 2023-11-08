@@ -47,13 +47,15 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductViewHold
         holder.priceView.setText(formattedNumber+" VNĐ");
         ImageLoader imageLoader = new ImageLoader();
         String imageURL = items.get(position).getImageUrl();
-//        Log.e("ImageTest", imageURL);
+//        Log.e("ImageTest", imageURL.substring(0, imageURL.length()-2));
+//        Picasso.get().load("https://scontent.fhan14-4.fna.fbcdn.net/v/t39.30808-6/399468337_713451227482267_399211847584177906_n.jpg?stp=dst-jpg_p843x403&_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_ohc=8h7PIkuMRQ8AX98rIR8&_nc_ht=scontent.fhan14-4.fna&oh=00_AfAv6uUsdEQ2NLqlZPpjLcyGy02ExgISjWCA3RJh6Tg1GA&oe=654FF142").fit().into(holder.imageView);
         imageLoader.loadImage(imageURL, holder.imageView);
         Phone phone = items.get(position);
 //        holder.imageView.setImageResource(R.drawable.addtocart);
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 listener.OnItemClicked(phone);
             }
         });
@@ -85,7 +87,6 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductViewHold
         public void loadImage(String imageUrl, ImageView imageView) {
             Picasso.get()
                     .load(imageUrl)
-                    .error(R.drawable.addtocart)
                     .into(imageView);
         }
     }

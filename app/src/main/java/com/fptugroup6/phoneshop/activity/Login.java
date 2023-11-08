@@ -51,16 +51,21 @@ public class Login extends AppCompatActivity {
         call.enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
-                if(response.isSuccessful()){
-                    if(response.body().getUsername()!=null){
-                        Toast.makeText(getApplicationContext(),"Login Success: "+ response.body().getEmail(), Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent();
-                        intent.setClass(Login.this, MainActivity.class);
-                        startActivity(intent);
+                try{
+                    if(response.isSuccessful()){
+                        if(response.body().getUsername()!=null){
+                            Toast.makeText(getApplicationContext(),"Login Success: "+ response.body().getEmail(), Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent();
+                            intent.setClass(Login.this, MainActivity.class);
+                            startActivity(intent);
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Username or password not match", Toast.LENGTH_LONG).show();
+                        }
                     }else{
-                        Toast.makeText(getApplicationContext(),"Username or password not match: "+response.body().getEmail(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Login Fail", Toast.LENGTH_LONG).show();
                     }
-                }else{
+                }
+                catch (Exception ex){
                     Toast.makeText(getApplicationContext(),"Login Fail", Toast.LENGTH_LONG).show();
                 }
             }

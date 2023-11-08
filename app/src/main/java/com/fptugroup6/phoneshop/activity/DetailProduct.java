@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.fptugroup6.phoneshop.R;
 import com.fptugroup6.phoneshop.model.Phone;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -26,18 +28,21 @@ public class DetailProduct extends AppCompatActivity {
     private LinearLayout addToCart;
     private LinearLayout buyNow;
     private EditText amout;
+    private ImageView imageProduct;
     int number = 1;
 
-    Intent intent = getIntent();
-    Phone phone = new Phone();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_product);
-        phone = (Phone) intent.getSerializableExtra("phone");
+
+        Intent intent = getIntent();
+        Phone phone = (Phone) intent.getSerializableExtra("phone");
+//        phone = (Phone) intent.getSerializableExtra("phone");
 
         rv = findViewById(R.id.recycler_view);
-        listString = setData();
+        listString = setData(phone);
         Adapter adapter = new Adapter(listString, this);
         rv.setLayoutManager(new GridLayoutManager(this, 1));
         rv.setAdapter(adapter);
@@ -51,6 +56,8 @@ public class DetailProduct extends AppCompatActivity {
         amout = findViewById(R.id.amout);
         amout.setText(String.valueOf(number));
 
+        imageProduct = findViewById(R.id.image_product);
+        Picasso.get().load(phone.getImageUrl()).into(imageProduct);
 
         increment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,20 +78,35 @@ public class DetailProduct extends AppCompatActivity {
 
     }
 
-    private ArrayList<String> setData() {
+    private ArrayList<String> setData(Phone phone) {
         ArrayList<String> list = new ArrayList<>();
-//        list.add("Model Name: "+phone.getModelName());
-        list.add("Màu tím.");
-        list.add("Màn hình 14 inch.");
-        list.add("Pin 6000mAh.");
-        list.add("Giá: 4.000.000.000.");
-        list.add("Bộ nhớ: 1T.");
-        list.add("Có nhiều tính năng nổi bật.");
-        list.add("Máy mới đập hộp 100%.");
-        list.add("Bảo hành 6 tháng lỗi đổi mới trong 3 tháng.");
-        list.add("Có thể trả góp 0%.");
-        list.add("Thiết kế sang trọng, sở hữu gam màu thời thượng khơi dậy những ngày mới của bạn.");
-        list.add("Giảm giá 60%.");
+        list.add("Model Name: "+phone.getModelName());
+        list.add("Manufacturer: "+phone.getManufacturer());
+        String formattedNumber = addThousandSeparators(String.valueOf(phone.getPrice()));
+        list.add("Price: "+formattedNumber+" VNĐ");
+        list.add("In stock: "+(phone.isInStock()?"Yes":"No"));
+        list.add("Description: "+phone.getDescription());
         return list;
+    }
+
+    public static String addThousandSeparators(String input) {
+        if (input == null || input.isEmpty()) {
+            return input;
+        }
+
+        int length = input.length();
+        StringBuilder result = new StringBuilder();
+        int count = 0;
+
+        for (int i = length - 1; i >= 0; i--) {
+            result.insert(0, input.charAt(i));
+            count++;
+
+            if (count % 3 == 0 && i > 0) {
+                result.insert(0, ",");
+            }
+        }
+
+        return result.toString();
     }
 }

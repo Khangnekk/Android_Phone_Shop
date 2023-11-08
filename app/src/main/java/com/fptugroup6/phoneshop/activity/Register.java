@@ -60,7 +60,10 @@ public class Register extends AppCompatActivity {
                     accountRaw.setPassword(password);
                     accountRaw.setFullName(fullName);
                     accountRaw.setEmail(email);
-                    clickBtnSignUp(accountRaw);
+                    if(username!=null && password!=null && password != null)
+                        clickBtnSignUp(accountRaw);
+                    else
+                        Toast.makeText(getApplicationContext(),"Please enter your information", Toast.LENGTH_LONG).show();
                 }else{
                     Toast.makeText(getApplicationContext(),"Password not match", Toast.LENGTH_LONG).show();
                 }

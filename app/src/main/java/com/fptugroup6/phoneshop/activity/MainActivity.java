@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
     @Override
     public void OnItemClicked(Phone item) {
         Intent intent2 = new Intent();
-        intent2.putExtra("Phone",item);
+        intent2.putExtra("phone",item);
         intent2.setClass(MainActivity.this,DetailProduct.class);
         startActivity(intent2);
     }
