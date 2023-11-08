@@ -15,6 +15,7 @@ import com.fptugroup6.phoneshop.model.Phone;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class ListProductAdapter extends RecyclerView.Adapter<ListProductViewHolder> {
@@ -38,7 +39,11 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductViewHold
     @Override
     public void onBindViewHolder(@NonNull ListProductViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.nameView.setText(items.get(position).getModelName());
-        holder.priceView.setText(items.get(position).getPrice()+" VNĐ");
+
+        String price = String.valueOf(items.get(position).getPrice());
+        String formattedNumber = addThousandSeparators(price);
+
+        holder.priceView.setText(formattedNumber+" VNĐ");
         ImageLoader imageLoader = new ImageLoader();
         String imageURL = items.get(position).getImageUrl();
 //        Log.e("ImageTest", imageURL);
@@ -53,10 +58,32 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductViewHold
 
     }
 
+    public static String addThousandSeparators(String input) {
+        if (input == null || input.isEmpty()) {
+            return input;
+        }
+
+        int length = input.length();
+        StringBuilder result = new StringBuilder();
+        int count = 0;
+
+        for (int i = length - 1; i >= 0; i--) {
+            result.insert(0, input.charAt(i));
+            count++;
+
+            if (count % 3 == 0 && i > 0) {
+                result.insert(0, ",");
+            }
+        }
+
+        return result.toString();
+    }
+
     public class ImageLoader {
         public void loadImage(String imageUrl, ImageView imageView) {
             Picasso.get()
                     .load(imageUrl)
+                    .error(R.drawable.addtocart)
                     .into(imageView);
         }
     }

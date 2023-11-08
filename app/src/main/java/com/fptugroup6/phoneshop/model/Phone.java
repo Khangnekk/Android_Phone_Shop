@@ -7,7 +7,7 @@ public class Phone implements Serializable {
     private int phoneId;
     private String modelName;
     private String manufacturer;
-    private double price;
+    private long price;
     private String description;
     private boolean inStock;
     private String imageUrl;
@@ -17,7 +17,7 @@ public class Phone implements Serializable {
         orderDetails = new ArrayList<>();
     }
 
-    public Phone(int phoneID, String modelName, String manufacturer, double price, String description, boolean inStock, String imageURL) {
+    public Phone(int phoneID, String modelName, String manufacturer, long price, String description, boolean inStock, String imageURL) {
         this.phoneId = phoneID;
         this.modelName = modelName;
         this.manufacturer = manufacturer;
@@ -52,11 +52,11 @@ public class Phone implements Serializable {
         this.manufacturer = manufacturer;
     }
 
-    public double getPrice() {
+    public long getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(long price) {
         this.price = price;
     }
 

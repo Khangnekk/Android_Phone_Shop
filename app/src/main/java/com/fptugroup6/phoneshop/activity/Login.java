@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity {
             public void onResponse(Call<Account> call, Response<Account> response) {
                 if(response.isSuccessful()){
                     if(response.body().getUsername()!=null){
-                        Toast.makeText(getApplicationContext(),"Login Success: "+response.body().getEmail(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Login Success: "+ response.body().getEmail(), Toast.LENGTH_LONG).show();
                         Intent intent = new Intent();
                         intent.setClass(Login.this, MainActivity.class);
                         startActivity(intent);
