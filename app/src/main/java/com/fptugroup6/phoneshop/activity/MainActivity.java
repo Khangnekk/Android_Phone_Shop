@@ -64,9 +64,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
     @Override
     public void OnItemClicked(Phone item) {
         Intent intent = new Intent();
-        intent.putExtra("Name",item.getModelName());
-        intent.putExtra("Price",item.getPrice());
-        intent.putExtra("Image",String.valueOf( item.getImageUrl()));
+        intent.putExtra("Phone",item);
         intent.setClass(MainActivity.this,DetailProduct.class);
         startActivity(intent);
     }

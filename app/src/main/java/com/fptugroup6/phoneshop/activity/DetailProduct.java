@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.fptugroup6.phoneshop.R;
+import com.fptugroup6.phoneshop.model.Phone;
 
 import java.util.ArrayList;
 
@@ -25,6 +27,9 @@ public class DetailProduct extends AppCompatActivity {
     private LinearLayout buyNow;
     private EditText amout;
     int number = 1;
+
+    Intent intent = getIntent();
+    Phone phone = (Phone) intent.getSerializableExtra("phone");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +38,7 @@ public class DetailProduct extends AppCompatActivity {
         rv = findViewById(R.id.recycler_view);
         listString = setData();
         Adapter adapter = new Adapter(listString, this);
-        rv.setLayoutManager(new GridLayoutManager(this,1));
+        rv.setLayoutManager(new GridLayoutManager(this, 1));
         rv.setAdapter(adapter);
 
         increment = findViewById(R.id.incrementButton);
@@ -44,7 +49,6 @@ public class DetailProduct extends AppCompatActivity {
 
         amout = findViewById(R.id.amout);
         amout.setText(String.valueOf(number));
-
 
 
         increment.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +72,7 @@ public class DetailProduct extends AppCompatActivity {
 
     private ArrayList<String> setData() {
         ArrayList<String> list = new ArrayList<>();
-        list.add("Iphone 11 Promax bản Hàn.");
+        list.add("Model Name: "+phone.getModelName());
         list.add("Màu tím.");
         list.add("Màn hình 14 inch.");
         list.add("Pin 6000mAh.");
