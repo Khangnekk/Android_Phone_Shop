@@ -29,11 +29,12 @@ public class DetailProduct extends AppCompatActivity {
     int number = 1;
 
     Intent intent = getIntent();
-    Phone phone = (Phone) intent.getSerializableExtra("phone");
+    Phone phone = new Phone();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_product);
+        phone = (Phone) intent.getSerializableExtra("phone");
 
         rv = findViewById(R.id.recycler_view);
         listString = setData();
@@ -72,7 +73,7 @@ public class DetailProduct extends AppCompatActivity {
 
     private ArrayList<String> setData() {
         ArrayList<String> list = new ArrayList<>();
-        list.add("Model Name: "+phone.getModelName());
+//        list.add("Model Name: "+phone.getModelName());
         list.add("Màu tím.");
         list.add("Màn hình 14 inch.");
         list.add("Pin 6000mAh.");

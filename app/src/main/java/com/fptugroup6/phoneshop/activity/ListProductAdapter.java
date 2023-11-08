@@ -16,15 +16,16 @@ import com.fptugroup6.phoneshop.model.Phone;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListProductAdapter extends RecyclerView.Adapter<ListProductViewHolder> {
 
     Context context;
-    List<Phone> items;
+    ArrayList<Phone> items;
 
     private SelectListener listener;
-    public ListProductAdapter(Context context, List<Phone> items, SelectListener listener) {
+    public ListProductAdapter(Context context, ArrayList<Phone> items, SelectListener listener) {
         this.context = context;
         this.items = items;
         this.listener = listener;
@@ -48,11 +49,12 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductViewHold
         String imageURL = items.get(position).getImageUrl();
 //        Log.e("ImageTest", imageURL);
         imageLoader.loadImage(imageURL, holder.imageView);
+        Phone phone = items.get(position);
 //        holder.imageView.setImageResource(R.drawable.addtocart);
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.OnItemClicked(items.get(position));
+                listener.OnItemClicked(phone);
             }
         });
 

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -63,9 +64,9 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
 
     @Override
     public void OnItemClicked(Phone item) {
-        Intent intent = new Intent();
-        intent.putExtra("Phone",item);
-        intent.setClass(MainActivity.this,DetailProduct.class);
-        startActivity(intent);
+        Intent intent2 = new Intent();
+        intent2.putExtra("Phone",item);
+        intent2.setClass(MainActivity.this,DetailProduct.class);
+        startActivity(intent2);
     }
 }
