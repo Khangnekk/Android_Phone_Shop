@@ -1,6 +1,7 @@
 package com.fptugroup6.phoneshop.api;
 
 import com.fptugroup6.phoneshop.model.Account;
+import com.fptugroup6.phoneshop.model.OrderDetails;
 import com.fptugroup6.phoneshop.model.Phone;
 
 import java.util.ArrayList;
@@ -20,4 +21,8 @@ public interface ApiService {
 
     @GET("api/phone")
     Call<ArrayList<Phone>> phone();
+    @GET("api/OderCart")
+    Call<ArrayList<OrderDetails>> GetOrderDetail(String username);
+    @POST("api/AddToCart")
+    Call<Boolean> AddToCart(@Body String username, String phoneid, String quantity);
 }

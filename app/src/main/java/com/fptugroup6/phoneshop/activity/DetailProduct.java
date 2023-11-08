@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.fptugroup6.phoneshop.R;
 import com.fptugroup6.phoneshop.model.Phone;
@@ -56,6 +57,8 @@ public class DetailProduct extends AppCompatActivity {
         amout = findViewById(R.id.amout);
         amout.setText(String.valueOf(number));
 
+
+
         imageProduct = findViewById(R.id.image_product);
         Picasso.get().load(phone.getImageUrl()).into(imageProduct);
 
@@ -76,6 +79,14 @@ public class DetailProduct extends AppCompatActivity {
             }
         });
 
+        // Add to carrt
+        addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyNotificationChanel.sendNotification(DetailProduct.this,Cart.class);
+                Toast.makeText(DetailProduct.this, "add to cart", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private ArrayList<String> setData(Phone phone) {
