@@ -1,6 +1,8 @@
 package com.fptugroup6.phoneshop.api;
 
 import com.fptugroup6.phoneshop.model.Account;
+import com.fptugroup6.phoneshop.model.Link;
+import com.fptugroup6.phoneshop.model.PaymentInformationModel;
 import com.fptugroup6.phoneshop.model.OrderDetails;
 import com.fptugroup6.phoneshop.model.Phone;
 
@@ -24,6 +26,11 @@ public interface ApiService {
     Call<Phone> GetPhone(@Query("username") int phone_id);
     @GET("api/phone")
     Call<ArrayList<Phone>> phone();
+
+    @POST("api/VNPAY")
+    Call<Link> createPayment(@Body PaymentInformationModel paymentInformationModel);
+//@POST("api/VNPAY/create-payment")
+//Call<String> createPayment(@Body PaymentInformationModel paymentInformationModel);
     @GET("api/OderCart")
     Call<ArrayList<OrderDetails>> GetOrderDetail(@Query("username") String username);
     @POST("api/AddToCart")
