@@ -6,6 +6,7 @@ public class Product_CartDetail {
     private String modelName;
     private long price;
     private String description;
+
     private int quantity;
 
     public Product_CartDetail(String imageUrl, String modelName, long price, String description, int quantity) {
@@ -14,6 +15,10 @@ public class Product_CartDetail {
         this.price = price;
         this.description = description;
         this.quantity = quantity;
+    }
+
+    public Product_CartDetail() {
+
     }
 
     public String getImageUrl() {

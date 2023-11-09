@@ -13,14 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fptugroup6.phoneshop.R;
 import com.fptugroup6.phoneshop.model.Phone;
+import com.fptugroup6.phoneshop.model.Product_CartDetail;
 
 import java.util.ArrayList;
 
 public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
-    private ArrayList<Phone> PhoneList;
+    private ArrayList<Product_CartDetail> PhoneList;
     private Context context;
 
-    public AdapterCart(ArrayList<Phone> phoneList, Context context) {
+    public AdapterCart(ArrayList<Product_CartDetail> phoneList, Context context) {
         PhoneList = phoneList;
         this.context = context;
     }
@@ -37,12 +38,12 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
         holder.name.setText(PhoneList.get(position).getModelName());
         holder.price.setText(String.valueOf(PhoneList.get(position).getPrice()));
         holder.des.setText(PhoneList.get(position).getDescription());
-        holder.name.setText(PhoneList.get(position).getModelName());
+        holder.amount.setText(PhoneList.get(position).getQuantity());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return PhoneList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -60,7 +61,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
             name = itemView.findViewById(R.id.name_cart);
             price = itemView.findViewById(R.id.price_cart);
             des = itemView.findViewById(R.id.desciption_product_cart);
-            amount = itemView.findViewById(R.id.name_cart);
+            amount = itemView.findViewById(R.id.amout_cart);
             increment = itemView.findViewById(R.id.increment);
             decrement = itemView.findViewById(R.id.decrement);
         }

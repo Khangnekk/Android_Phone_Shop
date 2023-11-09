@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.fptugroup6.phoneshop.R;
+import com.fptugroup6.phoneshop.api.ApiClient;
 import com.fptugroup6.phoneshop.api.ApiService;
 import com.fptugroup6.phoneshop.model.Phone;
 import com.squareup.picasso.Picasso;
@@ -42,6 +43,7 @@ public class DetailProduct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_product);
+        apiService = ApiClient.getClient().create(ApiService.class);
 
         Intent intent = getIntent();
         Phone phone = (Phone) intent.getSerializableExtra("phone");
