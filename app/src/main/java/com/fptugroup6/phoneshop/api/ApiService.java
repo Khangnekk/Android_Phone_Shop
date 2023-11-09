@@ -3,6 +3,7 @@ package com.fptugroup6.phoneshop.api;
 import com.fptugroup6.phoneshop.model.Account;
 import com.fptugroup6.phoneshop.model.Link;
 import com.fptugroup6.phoneshop.model.PaymentInformationModel;
+import com.fptugroup6.phoneshop.model.OrderDetails;
 import com.fptugroup6.phoneshop.model.Phone;
 
 import java.util.ArrayList;
@@ -27,4 +28,8 @@ public interface ApiService {
     Call<Link> createPayment(@Body PaymentInformationModel paymentInformationModel);
 //@POST("api/VNPAY/create-payment")
 //Call<String> createPayment(@Body PaymentInformationModel paymentInformationModel);
+    @GET("api/OderCart")
+    Call<ArrayList<OrderDetails>> GetOrderDetail(String username);
+    @POST("api/AddToCart")
+    Call<Boolean> AddToCart(@Body String username, String phoneid, String quantity);
 }
