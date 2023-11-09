@@ -2,6 +2,7 @@ package com.fptugroup6.phoneshop.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.KeyCycle;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class Cart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+        ArrayList<Phone> productCartDetails = new ArrayList<>();
         RecyclerView rv = findViewById(R.id.recyclerview_cart);
         Call<ArrayList<OrderDetails>> call = apiService.GetOrderDetail("Khang");
         call.enqueue(new Callback<ArrayList<OrderDetails>>() {
@@ -37,7 +39,8 @@ public class Cart extends AppCompatActivity {
                 if(response.body()!=null){
                     Toast.makeText(getApplicationContext(),"Get Data Success: ", Toast.LENGTH_LONG).show();
                     ArrayList<OrderDetails> oderOrderDetails = response.body();
-                    ArrayList<Product_CartDetail> productCartDetails = getPhone(oderOrderDetails);
+                    ArrayList<Phone> productCartDetails = getPhone(oderOrderDetails);
+                    setRecyclerView(productCartDetails);
                     //AdapterCart adapterCart = new AdapterCart()
                 }else{
                     Toast.makeText(getApplicationContext(),"Get Data: Fail ", Toast.LENGTH_LONG).show();
@@ -53,9 +56,28 @@ public class Cart extends AppCompatActivity {
         });
     }
 
-    public ArrayList<Product_CartDetail> getPhone(ArrayList<OrderDetails> oderOrderDetails){
+    public void setRecyclerView(ArrayList<Phone> phones){
+        RecyclerView rv = findViewById(R.id.recyclerview_cart);
+        AdapterCart adapterCart = new AdapterCart(phones,Cart.this);
+        rv.setLayoutManager(new GridLayoutManager(Cart.this, 1));
+        rv.setAdapter(adapterCart);
+    }
+    public ArrayList<Phone> getPhone(ArrayList<OrderDetails> oderOrderDetails){
+        ArrayList<Phone> phones = new ArrayList<>();
         for(int i = 0; i < oderOrderDetails.stream().count(); i++) {
+            Call<Phone> phone = apiService.GetPhone(oderOrderDetails.get(i).getPhoneID());
+            phone.enqueue(new Callback<Phone>() {
+                @Override
+                public void onResponse(Call<Phone> call, Response<Phone> response) {
+                    phones.add(response.body());
+                }
 
+                @Override
+                public void onFailure(Call<Phone> call, Throwable t) {
+
+                }
+            });
         }
+        return phones;
     }
 }

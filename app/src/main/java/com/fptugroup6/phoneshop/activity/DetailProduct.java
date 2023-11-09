@@ -14,10 +14,15 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.fptugroup6.phoneshop.R;
+import com.fptugroup6.phoneshop.api.ApiService;
 import com.fptugroup6.phoneshop.model.Phone;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DetailProduct extends AppCompatActivity {
     private RecyclerView rv;
@@ -31,7 +36,7 @@ public class DetailProduct extends AppCompatActivity {
     private EditText amout;
     private ImageView imageProduct;
     int number = 1;
-
+    ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +88,21 @@ public class DetailProduct extends AppCompatActivity {
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyNotificationChanel.sendNotification(DetailProduct.this,Cart.class);
-                Toast.makeText(DetailProduct.this, "add to cart", Toast.LENGTH_LONG).show();
+                Call<Boolean> call = apiService.AddToCart("Khang","1","2");
+                call.enqueue(new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                        Toast.makeText(DetailProduct.this, "Bạn vừa add 1 sản phẩm vào giỏ hàng", Toast.LENGTH_LONG);
+                        MyNotificationChanel.sendNotification(DetailProduct.this, Cart.class);
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
+                        Toast.makeText(DetailProduct.this, "add failed", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
             }
         });
     }
