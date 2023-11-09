@@ -17,6 +17,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
+
     @POST("api/Login")
     Call<Account> login(@Body Account account);
 
@@ -26,7 +27,6 @@ public interface ApiService {
     Call<Phone> GetPhone(@Query("username") int phone_id);
     @GET("api/phone")
     Call<ArrayList<Phone>> phone();
-
     @POST("api/VNPAY")
     Call<Link> createPayment(@Body PaymentInformationModel paymentInformationModel);
 //@POST("api/VNPAY/create-payment")

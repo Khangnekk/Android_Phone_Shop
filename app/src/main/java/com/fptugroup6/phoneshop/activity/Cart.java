@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.fptugroup6.phoneshop.R;
@@ -31,45 +32,60 @@ public class Cart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         ArrayList<Phone> productCartDetails = new ArrayList<>();
-        RecyclerView rv = findViewById(R.id.recyclerview_cart);
+        ArrayList<Product_CartDetail> productCartDetails1 = new ArrayList<>();
+
+        apiService = ApiClient.getClient().create(ApiService.class);
         Call<ArrayList<OrderDetails>> call = apiService.GetOrderDetail("Khang");
-//        call.enqueue(new Callback<ArrayList<OrderDetails>>() {
-//            @Override
-//            public void onResponse(Call<ArrayList<OrderDetails>> call, Response<ArrayList<OrderDetails>> response) {
-//                if(response.body()!=null){
-//                    Toast.makeText(getApplicationContext(),"Get Data Success: ", Toast.LENGTH_LONG).show();
-//                    ArrayList<OrderDetails> oderOrderDetails = response.body();
-//                    ArrayList<Phone> productCartDetails = getPhone(oderOrderDetails);
-//                    setRecyclerView(productCartDetails);
-//                    //AdapterCart adapterCart = new AdapterCart()
-//                }else{
-//                    Toast.makeText(getApplicationContext(),"Get Data: Fail ", Toast.LENGTH_LONG).show();
-//                }
+
+        call.enqueue(new Callback<ArrayList<OrderDetails>>() {
+            @Override
+            public void onResponse(Call<ArrayList<OrderDetails>> call, Response<ArrayList<OrderDetails>> response) {
+                if(response.body()!=null){
+                    Toast.makeText(getApplicationContext(),"Get Data Success: ", Toast.LENGTH_LONG).show();
+                    ArrayList<OrderDetails> oderOrderDetails = response.body();
+                    ArrayList<Product_CartDetail> phone_ByOrderDetails = getPhone(oderOrderDetails);
+
+                    setRecyclerView(phone_ByOrderDetails);
+                    Log.d("Order detail:" , "get successful");
+                    //AdapterCart adapterCart = new AdapterCart()
+                }else{
+                    Log.e("order detail: ", "get fail");
+                    Toast.makeText(getApplicationContext(),"Get Data: Fail ", Toast.LENGTH_LONG).show();
+                }
             }
 
-//            @Override
-//            public void onFailure(Call<ArrayList<OrderDetails>> call, Throwable t) {
-//
-//            }
+            @Override
+            public void onFailure(Call<ArrayList<OrderDetails>> call, Throwable t) {
+                Log.e("order detail:" , "connecto to backend server fail");
+            }
 
 
 //        });
 //    }
 
-    public void setRecyclerView(ArrayList<Phone> phones){
+    public void setRecyclerView(ArrayList<Product_CartDetail> phones){
         RecyclerView rv = findViewById(R.id.recyclerview_cart);
         AdapterCart adapterCart = new AdapterCart(phones,Cart.this);
         rv.setLayoutManager(new GridLayoutManager(Cart.this, 1));
         rv.setAdapter(adapterCart);
     }
-    public ArrayList<Phone> getPhone(ArrayList<OrderDetails> oderOrderDetails){
+    public ArrayList<Product_CartDetail> getPhone(ArrayList<OrderDetails> oderOrderDetails){
         ArrayList<Phone> phones = new ArrayList<>();
+        ArrayList<Product_CartDetail> productCartDetails1 = new ArrayList<>();
+        int count = 0;
         for(int i = 0; i < oderOrderDetails.stream().count(); i++) {
+            count = i;
             Call<Phone> phone = apiService.GetPhone(oderOrderDetails.get(i).getPhoneID());
+            Product_CartDetail p = new Product_CartDetail();
+            int finalCount = count;
             phone.enqueue(new Callback<Phone>() {
                 @Override
                 public void onResponse(Call<Phone> call, Response<Phone> response) {
-                    phones.add(response.body());
+                    p.setModelName(response.body().getModelName());
+                    p.setImageUrl(response.body().getImageUrl());
+                    p.setDescription(response.body().getDescription());
+                    p.setQuantity(oderOrderDetails.get(finalCount).getQuantity());
+                    productCartDetails1.add(p);
                 }
 
                 @Override
@@ -78,6 +94,6 @@ public class Cart extends AppCompatActivity {
                 }
             });
         }
-        return phones;
+        return productCartDetails1;
     }
 }
