@@ -88,21 +88,21 @@ public class DetailProduct extends AppCompatActivity {
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<Boolean> call = apiService.AddToCart("Khang","1","2");
-                call.enqueue(new Callback<Boolean>() {
-                    @Override
-                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+//                Call<Boolean> call = apiService.AddToCart("Khang","1","2");
+//                call.enqueue(new Callback<Boolean>() {
+//                    @Override
+//                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                         Toast.makeText(DetailProduct.this, "Bạn vừa add 1 sản phẩm vào giỏ hàng", Toast.LENGTH_LONG);
                         MyNotificationChanel.sendNotification(DetailProduct.this, Cart.class);
-                    }
-
-                    @Override
-                    public void onFailure(Call<Boolean> call, Throwable t) {
-                        Toast.makeText(DetailProduct.this, "add failed", Toast.LENGTH_LONG).show();
-                    }
-                });
-
-
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<Boolean> call, Throwable t) {
+//                        Toast.makeText(DetailProduct.this, "add failed", Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//
+//
             }
         });
     }

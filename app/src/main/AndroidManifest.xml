@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:name=".activity.MyNotificationChanel"
         android:allowBackup="true"
@@ -17,37 +18,40 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="34">
         <activity
-            android:name=".activity.Payment"
-            android:exported="true">
+            android:name=".activity.Map_Activity"
+            android:exported="true" >
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyChHLPQjIJpNLYBnqUytPdZZ-_ezK1eOiY" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".activity.Payment"
+            android:exported="true"></activity>
         <activity
             android:name=".activity.BillingActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".activity.Cart"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".activity.DetailProduct"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activity.MainActivity"
             android:exported="true" />
         <activity
             android:name=".activity.Login"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <meta-data
@@ -56,7 +60,7 @@
 
         <activity
             android:name=".activity.Register"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

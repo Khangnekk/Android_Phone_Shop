@@ -33,28 +33,28 @@ public class Cart extends AppCompatActivity {
         ArrayList<Phone> productCartDetails = new ArrayList<>();
         RecyclerView rv = findViewById(R.id.recyclerview_cart);
         Call<ArrayList<OrderDetails>> call = apiService.GetOrderDetail("Khang");
-        call.enqueue(new Callback<ArrayList<OrderDetails>>() {
-            @Override
-            public void onResponse(Call<ArrayList<OrderDetails>> call, Response<ArrayList<OrderDetails>> response) {
-                if(response.body()!=null){
-                    Toast.makeText(getApplicationContext(),"Get Data Success: ", Toast.LENGTH_LONG).show();
-                    ArrayList<OrderDetails> oderOrderDetails = response.body();
-                    ArrayList<Phone> productCartDetails = getPhone(oderOrderDetails);
-                    setRecyclerView(productCartDetails);
-                    //AdapterCart adapterCart = new AdapterCart()
-                }else{
-                    Toast.makeText(getApplicationContext(),"Get Data: Fail ", Toast.LENGTH_LONG).show();
-                }
+//        call.enqueue(new Callback<ArrayList<OrderDetails>>() {
+//            @Override
+//            public void onResponse(Call<ArrayList<OrderDetails>> call, Response<ArrayList<OrderDetails>> response) {
+//                if(response.body()!=null){
+//                    Toast.makeText(getApplicationContext(),"Get Data Success: ", Toast.LENGTH_LONG).show();
+//                    ArrayList<OrderDetails> oderOrderDetails = response.body();
+//                    ArrayList<Phone> productCartDetails = getPhone(oderOrderDetails);
+//                    setRecyclerView(productCartDetails);
+//                    //AdapterCart adapterCart = new AdapterCart()
+//                }else{
+//                    Toast.makeText(getApplicationContext(),"Get Data: Fail ", Toast.LENGTH_LONG).show();
+//                }
             }
 
-            @Override
-            public void onFailure(Call<ArrayList<OrderDetails>> call, Throwable t) {
+//            @Override
+//            public void onFailure(Call<ArrayList<OrderDetails>> call, Throwable t) {
+//
+//            }
 
-            }
 
-
-        });
-    }
+//        });
+//    }
 
     public void setRecyclerView(ArrayList<Phone> phones){
         RecyclerView rv = findViewById(R.id.recyclerview_cart);

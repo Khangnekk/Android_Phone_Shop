@@ -31,7 +31,7 @@ public interface ApiService {
     Call<Link> createPayment(@Body PaymentInformationModel paymentInformationModel);
 //@POST("api/VNPAY/create-payment")
 //Call<String> createPayment(@Body PaymentInformationModel paymentInformationModel);
-    @GET("api/OderCart")
+    @GET("api/OrderCart")
     Call<ArrayList<OrderDetails>> GetOrderDetail(@Query("username") String username);
     @POST("api/AddToCart")
     Call<Boolean> AddToCart(@Query("username") String username,@Query("phoneid") String phone_id,@Query("quantity") String quantity);
