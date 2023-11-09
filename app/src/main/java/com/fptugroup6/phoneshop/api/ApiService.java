@@ -1,6 +1,8 @@
 package com.fptugroup6.phoneshop.api;
 
 import com.fptugroup6.phoneshop.model.Account;
+import com.fptugroup6.phoneshop.model.Link;
+import com.fptugroup6.phoneshop.model.PaymentInformationModel;
 import com.fptugroup6.phoneshop.model.Phone;
 
 import java.util.ArrayList;
@@ -20,4 +22,9 @@ public interface ApiService {
 
     @GET("api/phone")
     Call<ArrayList<Phone>> phone();
+
+    @POST("api/VNPAY")
+    Call<Link> createPayment(@Body PaymentInformationModel paymentInformationModel);
+//@POST("api/VNPAY/create-payment")
+//Call<String> createPayment(@Body PaymentInformationModel paymentInformationModel);
 }

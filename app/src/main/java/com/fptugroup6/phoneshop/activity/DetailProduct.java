@@ -76,6 +76,13 @@ public class DetailProduct extends AppCompatActivity {
             }
         });
 
+        addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
 
     private ArrayList<String> setData(Phone phone) {
