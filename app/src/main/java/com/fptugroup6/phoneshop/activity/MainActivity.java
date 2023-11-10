@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -26,6 +28,28 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements SelectListener {
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.option_demo_bill) {
+            Intent intent = new Intent();
+            intent.setClass(getApplicationContext(),BillingActivity.class);
+            startActivity(intent);
+        }
+        if (item.getItemId() == R.id.option_map) {
+            Intent intent = new Intent();
+            intent.setClass(getApplicationContext(),Map_Activity.class);
+            startActivity(intent);
+        }
+        return true;
+    }
+
     ApiService apiService;
 
     //SharedPreferences sharedPreferences =  getSharedPreferences("session", Context.MODE_PRIVATE);

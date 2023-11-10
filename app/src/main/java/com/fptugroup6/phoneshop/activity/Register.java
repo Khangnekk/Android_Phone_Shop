@@ -80,8 +80,7 @@ public class Register extends AppCompatActivity {
         call.enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
-                if(response.isSuccessful()){
-                    Toast.makeText(getApplicationContext(),"SignUp Success: "+response.body().getEmail(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"SignUp Success", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent();
                     intent.setClass(Register.this, Login.class);
                     startActivity(intent);

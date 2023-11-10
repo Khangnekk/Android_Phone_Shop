@@ -1,37 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<fragment
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:id="@+id/map"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/mapCardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp">
-
-        <ImageView
-            android:id="@+id/storeMapImage"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <TextView
-                android:id="@+id/storeAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:text="Store Addess"
-                android:gravity="start"
-                android:layout_marginBottom="8dp" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-</LinearLayout>
+    map:cameraBearing="112.5"
+    map:cameraTargetLat="-33.796923"
+    map:cameraTargetLng="150.922433"
+    map:cameraTilt="30"
+    map:cameraZoom="13"
+    map:mapType="normal"
+    map:uiCompass="false"
+    map:uiRotateGestures="true"
+    map:uiScrollGestures="true"
+    map:uiTiltGestures="true"
+    map:uiZoomControls="false"
+    map:uiZoomGestures="true"
+    />

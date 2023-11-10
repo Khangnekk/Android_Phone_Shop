@@ -63,7 +63,7 @@
                         android:id="@+id/txtProductName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Productname"
+                        android:text="Productname: DemoProduct"
                         android:textColor="#000000"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -72,21 +72,21 @@
                         android:id="@+id/txtType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Type:"
+                        android:text="Type: OP_BUY"
                         android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/txtPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Price"
+                        android:text="Price: 10000000"
                         android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/txtQuantity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Quantity"
+                        android:text="Quantity: 1"
                         android:textColor="#000000" />
                 </LinearLayout>
             </LinearLayout>
@@ -137,7 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Momo Wallet"
+                    android:text="VnPay"
                     android:textColor="#000000" />
             </RadioGroup>
         </LinearLayout>
@@ -213,7 +213,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:paddingRight="20dp"
-                android:text="12.000.000"
+                android:text="10.000.000"
                 android:textAlignment="textEnd"
                 android:textColor="#000000"
                 android:textSize="25sp"
