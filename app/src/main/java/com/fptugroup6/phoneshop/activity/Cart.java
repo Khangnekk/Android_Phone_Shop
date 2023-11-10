@@ -27,73 +27,107 @@ import retrofit2.Response;
 public class Cart extends AppCompatActivity {
 
     ApiService apiService;
+    Phone phone;
+    ArrayList<OrderDetails> oderOrderDetails;
+    ArrayList<Phone> phones = new ArrayList<>();
+
+    ArrayList<Product_CartDetail> order_details = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-        ArrayList<Phone> productCartDetails = new ArrayList<>();
-        ArrayList<Product_CartDetail> productCartDetails1 = new ArrayList<>();
-
         apiService = ApiClient.getClient().create(ApiService.class);
-        Call<ArrayList<OrderDetails>> call = apiService.GetOrderDetail("Khang");
-
-        call.enqueue(new Callback<ArrayList<OrderDetails>>() {
+        get_phone_cart_detail();
+    }
+    private void get_phone_cart_detail(){
+        Call<ArrayList<Product_CartDetail>> call = apiService.GetOrderDetail("Khang");
+        call.enqueue(new Callback<ArrayList<Product_CartDetail>>() {
             @Override
-            public void onResponse(Call<ArrayList<OrderDetails>> call, Response<ArrayList<OrderDetails>> response) {
-                if(response.body()!=null){
-                    Toast.makeText(getApplicationContext(),"Get Data Success: ", Toast.LENGTH_LONG).show();
-                    ArrayList<OrderDetails> oderOrderDetails = response.body();
-                    ArrayList<Product_CartDetail> phone_ByOrderDetails = getPhone(oderOrderDetails);
+            public void onResponse(Call<ArrayList<Product_CartDetail>> call, Response<ArrayList<Product_CartDetail>> response) {
+                if(response.body()!= null){
+                    ArrayList<Product_CartDetail> orderDetails = response.body();
+                    display_recycler_view(orderDetails);
+                    //getPhones(orderDetails);
+                    //Log.d("product name", String.valueOf(order_details.get(0).getQuantity()));
 
-                    setRecyclerView(phone_ByOrderDetails);
-                    Log.d("Order detail:" , "get successful");
-                    //AdapterCart adapterCart = new AdapterCart()
-                }else{
-                    Log.e("order detail: ", "get fail");
-                    Toast.makeText(getApplicationContext(),"Get Data: Fail ", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ArrayList<OrderDetails>> call, Throwable t) {
-                Log.e("order detail:" , "connecto to backend server fail");
+            public void onFailure(Call<ArrayList<Product_CartDetail>> call, Throwable t) {
+
             }
+        });
+    }
 
-
-//        });
+//    private void getPhones(ArrayList<OrderDetails> orderDetails) {
+//        for(int i = 0; i < orderDetails.size();i++){
+//            Log.d("size", String.valueOf(orderDetails.size()));
+//            int quantity = orderDetails.get(i).getQuantity();
+//            Call<Phone> call = apiService.GetPhone(orderDetails.get(i).getPhoneID());
+//            call.enqueue(new Callback<Phone>() {
+//                @Override
+//                public void onResponse(Call<Phone> call, Response<Phone> response) {
+//                    if(response.isSuccessful()){
+//                        Phone phone = response.body();
+//                        Product_CartDetail p = new Product_CartDetail();
+//                        p.setImageUrl(phone.getImageUrl());
+//                        p.setModelName(phone.getModelName());
+//                        p.setQuantity(quantity);
+//                        p.setPrice(phone.getPrice() * quantity);
+//                        Log.d("Thứ tự sản phẩm","Sản phẩm" + phone.getPhoneId());
+//                        Log.d("Phone name",phone.getModelName());
+//                        Log.d("Phone url",phone.getImageUrl());
+//                        Log.d("Phone quannity",String.valueOf(quantity));
+//                        Log.d("Phone price",String.valueOf(phone.getPrice()));
+//                        order_details.add(p);
+//                    }else{
+//                        Log.e("Phone", "Get Phone failed");
+//                        Toast.makeText(getApplicationContext(),"Get Data: Fail ", Toast.LENGTH_LONG).show();
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<Phone> call, Throwable t) {
+//                    Toast.makeText(getApplicationContext(),t.toString(), Toast.LENGTH_LONG).show();
+//                }
+//            });
+//        }
 //    }
-
-    public void setRecyclerView(ArrayList<Product_CartDetail> phones){
-        RecyclerView rv = findViewById(R.id.recyclerview_cart);
-        AdapterCart adapterCart = new AdapterCart(phones,Cart.this);
-        rv.setLayoutManager(new GridLayoutManager(Cart.this, 1));
-        rv.setAdapter(adapterCart);
-    }
-    public ArrayList<Product_CartDetail> getPhone(ArrayList<OrderDetails> oderOrderDetails){
-        ArrayList<Phone> phones = new ArrayList<>();
-        ArrayList<Product_CartDetail> productCartDetails1 = new ArrayList<>();
-        int count = 0;
-        for(int i = 0; i < oderOrderDetails.stream().count(); i++) {
-            count = i;
-            Call<Phone> phone = apiService.GetPhone(oderOrderDetails.get(i).getPhoneID());
-            Product_CartDetail p = new Product_CartDetail();
-            int finalCount = count;
-            phone.enqueue(new Callback<Phone>() {
-                @Override
-                public void onResponse(Call<Phone> call, Response<Phone> response) {
-                    p.setModelName(response.body().getModelName());
-                    p.setImageUrl(response.body().getImageUrl());
-                    p.setDescription(response.body().getDescription());
-                    p.setQuantity(oderOrderDetails.get(finalCount).getQuantity());
-                    productCartDetails1.add(p);
-                }
-
-                @Override
-                public void onFailure(Call<Phone> call, Throwable t) {
-
-                }
-            });
+//    private Phone GetPhone(){
+//        Call<Phone> call = apiService.GetPhone(11);
+//        call.enqueue(new Callback<Phone>() {
+//            @Override
+//            public void onResponse(Call<Phone> call, Response<Phone> response) {
+//                if(response.isSuccessful()){
+//                    phone = response.body();
+//                }else{
+//
+//                }
+//
+//            }
+//            @Override
+//            public void onFailure(Call<Phone> call, Throwable t) {
+//            }
+//        });
+//        return phone;
+//    }
+//    private ArrayList<Product_CartDetail> getProductCartDetails(ArrayList<Phone> phones_raw) {
+//        ArrayList<Product_CartDetail> productCartDetails1 = new ArrayList<>();
+//        productCartDetails1.add(new Product_CartDetail("https://drive.google.com/uc?export=download&id=1Gx78jG3hSzNgwuN5pO84F3v58Ma1jy3b\\r\\n",phones_raw.get(0).getModelName(),1000000,"san pham dai ha gia", 5));
+//        productCartDetails1.add(new Product_CartDetail("https://drive.google.com/uc?export=download&id=1Gx78jG3hSzNgwuN5pO84F3v58Ma1jy3b\\r\\n","Iphone11",1000000,"san pham dai ha gia", 5));
+//        productCartDetails1.add(new Product_CartDetail("https://drive.google.com/uc?export=download&id=1Gx78jG3hSzNgwuN5pO84F3v58Ma1jy3b\\r\\n","Iphone11",1000000,"san pham dai ha gia", 5));
+//        productCartDetails1.add(new Product_CartDetail("https://drive.google.com/uc?export=download&id=1Gx78jG3hSzNgwuN5pO84F3v58Ma1jy3b\\r\\n","Iphone11",1000000,"san pham dai ha gia", 5));
+//        productCartDetails1.add(new Product_CartDetail("https://drive.google.com/uc?export=download&id=1Gx78jG3hSzNgwuN5pO84F3v58Ma1jy3b\\r\\n","Iphone11",1000000,"san pham dai ha gia", 5));
+//        productCartDetails1.add(new Product_CartDetail("https://drive.google.com/uc?export=download&id=1Gx78jG3hSzNgwuN5pO84F3v58Ma1jy3b\\r\\n","Iphone11",1000000,"san pham dai ha gia", 5));
+//        return productCartDetails1;
+//    }
+        private void display_recycler_view(ArrayList<Product_CartDetail> list) {
+            RecyclerView rv = findViewById(R.id.recyclerview_cart);
+            AdapterCart adapterCart = new AdapterCart(list, Cart.this );
+            rv.setLayoutManager(new GridLayoutManager(Cart.this, 1));
+            rv.setAdapter(adapterCart);
         }
-        return productCartDetails1;
-    }
+
 }

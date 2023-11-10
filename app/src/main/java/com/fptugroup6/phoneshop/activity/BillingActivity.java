@@ -64,6 +64,7 @@ public class BillingActivity extends AppCompatActivity {
                             intent.setClass(BillingActivity.this, Payment.class);
                             startActivity(intent);
                         }
+
                     }
 
                     @Override

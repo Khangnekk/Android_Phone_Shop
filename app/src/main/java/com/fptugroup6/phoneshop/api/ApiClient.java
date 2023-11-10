@@ -13,14 +13,12 @@ public class ApiClient {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
-
         if(retrofit == null){
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         }
-
         return  retrofit;
     }
 }

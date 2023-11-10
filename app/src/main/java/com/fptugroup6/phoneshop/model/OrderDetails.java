@@ -3,51 +3,70 @@ package com.fptugroup6.phoneshop.model;
 import java.io.Serializable;
 
 public class OrderDetails {
-        private int orderDetailID;
-        private int orderID;
-        private int phoneID;
+        private int orderDetailId;
+        private int orderId;
+        private String modelName;
+        private long price;
+        private int phoneId;
         private int quantity;
     
         public OrderDetails() {
         }
-    
-        public OrderDetails(int orderDetailID, int orderID, int phoneID, int quantity) {
-            this.orderDetailID = orderDetailID;
-            this.orderID = orderID;
-            this.phoneID = phoneID;
-            this.quantity = quantity;
-        }
-    
-        public int getOrderDetailID() {
-            return orderDetailID;
-        }
-    
-        public void setOrderDetailID(int orderDetailID) {
-            this.orderDetailID = orderDetailID;
-        }
-    
-        public int getOrderID() {
-            return orderID;
-        }
-    
-        public void setOrderID(int orderID) {
-            this.orderID = orderID;
-        }
-    
-        public int getPhoneID() {
-            return phoneID;
-        }
-    
-        public void setPhoneID(int phoneID) {
-            this.phoneID = phoneID;
-        }
-    
-        public int getQuantity() {
-            return quantity;
-        }
-    
-        public void setQuantity(int quantity) {
-            this.quantity = quantity;
-        }
-    
+
+    public int getOrderDetailId() {
+        return orderDetailId;
+    }
+
+    public void setOrderDetailId(int orderDetailId) {
+        this.orderDetailId = orderDetailId;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
+    }
+
+    public int getPhoneId() {
+        return phoneId;
+    }
+
+    public void setPhoneId(int phoneId) {
+        this.phoneId = phoneId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public OrderDetails(int orderDetailId, int orderId, String modelName, long price, int phoneId, int quantity) {
+        this.orderDetailId = orderDetailId;
+        this.orderId = orderId;
+        this.modelName = modelName;
+        this.price = price;
+        this.phoneId = phoneId;
+        this.quantity = quantity;
+    }
 }

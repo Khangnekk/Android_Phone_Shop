@@ -84,6 +84,10 @@ public class Register extends AppCompatActivity {
                     Intent intent = new Intent();
                     intent.setClass(Register.this, Login.class);
                     startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(),"SignUp Fail", Toast.LENGTH_LONG).show();
+                }
+
             }
 
             @Override

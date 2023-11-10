@@ -14,15 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fptugroup6.phoneshop.R;
 import com.fptugroup6.phoneshop.model.Phone;
 import com.fptugroup6.phoneshop.model.Product_CartDetail;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
-    private ArrayList<Product_CartDetail> PhoneList;
+    private ArrayList<Product_CartDetail> PhoneList = new ArrayList<>();
     private Context context;
 
     public AdapterCart(ArrayList<Product_CartDetail> phoneList, Context context) {
-        PhoneList = phoneList;
+        this.PhoneList = phoneList;
         this.context = context;
     }
 
@@ -35,10 +36,11 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Picasso.get().load(PhoneList.get(position).getImageUrl()).fit().into(holder.imageView);
         holder.name.setText(PhoneList.get(position).getModelName());
-        holder.price.setText(String.valueOf(PhoneList.get(position).getPrice()));
+        holder.price.setText(String.valueOf(PhoneList.get(position).getPrice()* PhoneList.get(position).getQuantity()));
         holder.des.setText(PhoneList.get(position).getDescription());
-        holder.amount.setText(PhoneList.get(position).getQuantity());
+        holder.amount.setText(String.valueOf(PhoneList.get(position).getQuantity()));
     }
 
     @Override
