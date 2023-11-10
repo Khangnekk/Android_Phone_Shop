@@ -7,20 +7,29 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fptugroup6.phoneshop.R;
+import com.fptugroup6.phoneshop.api.ApiClient;
+import com.fptugroup6.phoneshop.api.ApiService;
 import com.fptugroup6.phoneshop.model.Phone;
 import com.fptugroup6.phoneshop.model.Product_CartDetail;
+import com.google.android.gms.tasks.Task;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
     private ArrayList<Product_CartDetail> PhoneList = new ArrayList<>();
     private Context context;
+    private ApiService apiService = ApiClient.getClient().create(ApiService.class);
 
     public AdapterCart(ArrayList<Product_CartDetail> phoneList, Context context) {
         this.PhoneList = phoneList;
@@ -41,6 +50,50 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
         holder.price.setText(String.valueOf(PhoneList.get(position).getPrice()* PhoneList.get(position).getQuantity()));
         holder.des.setText(PhoneList.get(position).getDescription());
         holder.amount.setText(String.valueOf(PhoneList.get(position).getQuantity()));
+        Product_CartDetail phone = PhoneList.get(position);
+        int index = position;
+        holder.decrement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int amount = Integer.parseInt(holder.amount.getText().toString())-1;
+                holder.price.setText(String.valueOf(amount* phone.getPrice()));
+                holder.amount.setText(String.valueOf(amount));
+            }
+        });
+
+        holder.increment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                int amount = Integer.parseInt(holder.amount.getText().toString())+1;
+                holder.price.setText(String.valueOf(amount* phone.getPrice()));
+                holder.amount.setText(String.valueOf(amount));
+            }
+        });
+
+        holder.button_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PhoneList.remove(index);
+                notifyDataSetChanged();
+                Call<Task> call = apiService.Delete_cart(phone.getOrderDetailId());
+                call.enqueue(new Callback<Task>() {
+                    @Override
+                    public void onResponse(Call<Task> call, Response<Task> response) {
+                        if(response.isSuccessful()){
+                            Toast.makeText(context,"Delete Successfully", Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(context,"Delete Successfully", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Task> call, Throwable t) {
+                        Toast.makeText(context,"Disconnect with api service", Toast.LENGTH_LONG).show();
+
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -66,6 +119,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
             amount = itemView.findViewById(R.id.amout_cart);
             increment = itemView.findViewById(R.id.increment);
             decrement = itemView.findViewById(R.id.decrement);
+            button_delete = itemView.findViewById(R.id.delete_cart);
         }
     }
 }

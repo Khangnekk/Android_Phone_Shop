@@ -6,12 +6,14 @@ import com.fptugroup6.phoneshop.model.PaymentInformationModel;
 import com.fptugroup6.phoneshop.model.OrderDetails;
 import com.fptugroup6.phoneshop.model.Phone;
 import com.fptugroup6.phoneshop.model.Product_CartDetail;
+import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -35,5 +37,8 @@ public interface ApiService {
     @GET("api/OderCart")
     Call<ArrayList<Product_CartDetail>> GetOrderDetail(@Query("username") String username);
     @POST("api/AddToCart")
-    Call<Boolean> AddToCart(@Query("username") String username,@Query("phoneid") String phone_id,@Query("quantity") String quantity);
+    Call<Boolean> AddToCart(@Query("username") String username,@Query("phoneid") int phoneid,@Query("quantity") int quantity);
+
+    @DELETE("api/OderCart/DeleteCart")
+    Call<Task> Delete_cart(@Query("id") int id);
 }
