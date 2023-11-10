@@ -18,9 +18,11 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="34">
         <activity
+            android:name=".activity.ChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.Map_Activity"
-            android:exported="true" >
-        </activity>
+            android:exported="true"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -31,15 +33,13 @@
 
         <activity
             android:name=".activity.Payment"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activity.BillingActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".activity.Cart"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activity.DetailProduct"
             android:exported="true" />
