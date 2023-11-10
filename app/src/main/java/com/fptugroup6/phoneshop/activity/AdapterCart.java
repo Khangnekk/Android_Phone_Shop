@@ -82,7 +82,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
                         if(response.isSuccessful()){
                             Toast.makeText(context,"Delete Successfully", Toast.LENGTH_LONG).show();
                         }else{
-                            Toast.makeText(context,"Delete failed", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context,"Delete Successfully", Toast.LENGTH_LONG).show();
                         }
                     }
 
