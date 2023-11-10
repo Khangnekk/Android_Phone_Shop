@@ -43,10 +43,10 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.option_demo_bill) {
             Intent intent = new Intent();
-            intent.setClass(MainActivity.this,BillingActivity.class);
+            intent.setClass(getApplicationContext(),BillingActivity.class);
             startActivity(intent);
         }
-        if (item.getItemId() == R.id.option_map) {
+        if (item.getItemId() == R.id.option_map_1) {
             Intent intent = new Intent();
             intent.setClass(getApplicationContext(),Map_Activity.class);
             startActivity(intent);

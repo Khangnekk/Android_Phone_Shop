@@ -6,7 +6,7 @@
         android:title="Demo_Billing"
         app:showAsAction="always"/>
     <item
-        android:id="@+id/option_map"
+        android:id="@+id/option_map_1"
         android:title="Map"
         app:showAsAction="always"/>
 </menu>
