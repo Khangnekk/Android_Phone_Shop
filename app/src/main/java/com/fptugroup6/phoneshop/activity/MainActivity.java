@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -29,6 +31,8 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements SelectListener {
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -39,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.option_demo_bill) {
             Intent intent = new Intent();
-            intent.setClass(getApplicationContext(),BillingActivity.class);
+            intent.setClass(MainActivity.this,BillingActivity.class);
             startActivity(intent);
         }
         if (item.getItemId() == R.id.option_map) {
@@ -61,6 +65,15 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
         RecyclerView rv = findViewById(R.id.recyclerviewMain);
         apiService = ApiClient.getClient().create(ApiService.class);
         ArrayList<Phone> PhonesList = getPhones();
+        Button btnChat = findViewById(R.id.btnChat);
+        btnChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, ChatActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void set_Session(String username){
@@ -77,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
             @Override
             public void onResponse(Call<ArrayList<Phone>> call, Response<ArrayList<Phone>> response) {
                 if(response.body()!=null){
-                    Toast.makeText(getApplicationContext(),"Get Data Success: ", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getApplicationContext(),"Get Data Success: ", Toast.LENGTH_LONG).show();
                     ArrayList<Phone> phones = response.body();
                     processPhoneData(phones);
                 }else{
