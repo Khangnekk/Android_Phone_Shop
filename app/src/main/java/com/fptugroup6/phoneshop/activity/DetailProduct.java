@@ -50,6 +50,36 @@ public class DetailProduct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_product);
+
+        Button btnChat = findViewById(R.id.btnChatDp1);
+        btnChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(DetailProduct.this, ChatActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnHome = findViewById(R.id.btnHomeDp1);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(DetailProduct.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnCart = findViewById(R.id.btnMapDp1);
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(DetailProduct.this, Cart.class);
+                startActivity(intent);
+            }
+        });
         apiService = ApiClient.getClient().create(ApiService.class);
         MySharedPreferences mySharedPreferences = MySharedPreferences.getInstance(getApplicationContext());
 

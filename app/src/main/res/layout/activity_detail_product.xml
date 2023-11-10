@@ -8,14 +8,14 @@
     tools:context=".activity.DetailProduct">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,39 +25,48 @@
             android:layout_marginEnd="1dp"
             android:background="@drawable/backgound_border"
             android:gravity="center"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.444"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/image_product"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:src="@drawable/ic_launcher_foreground" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/information_product"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <LinearLayout
-                android:id="@+id/information_product"
-                android:layout_width="235dp"
-                android:layout_height="274dp"
-                android:layout_marginStart="10dp"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/information_product"
-                    android:textSize="20sp" />
+                <ImageView
+                    android:id="@+id/image_product"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/ic_launcher_foreground" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view"
+                <LinearLayout
+                    android:id="@+id/information_product"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:orientation="vertical">
 
-                </androidx.recyclerview.widget.RecyclerView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -158,4 +167,54 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btnChatDp1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Chat"
+            android:textAlignment="center"
+            android:textColor="@color/a"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/btnHomeDp1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Home"
+            android:textAlignment="center"
+            android:textColor="@color/a"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/btnMapDp1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Cart"
+            android:textAlignment="center"
+            android:textColor="@color/a"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

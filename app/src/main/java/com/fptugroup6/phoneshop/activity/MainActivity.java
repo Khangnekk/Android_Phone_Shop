@@ -41,11 +41,6 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.option_demo_bill) {
-            Intent intent = new Intent();
-            intent.setClass(getApplicationContext(),BillingActivity.class);
-            startActivity(intent);
-        }
         if (item.getItemId() == R.id.option_map_1) {
             Intent intent = new Intent();
             intent.setClass(getApplicationContext(),Map_Activity.class);
@@ -65,12 +60,22 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
         RecyclerView rv = findViewById(R.id.recyclerviewMain);
         apiService = ApiClient.getClient().create(ApiService.class);
         ArrayList<Phone> PhonesList = getPhones();
+
         Button btnChat = findViewById(R.id.btnChat);
         btnChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, ChatActivity.class);
+                startActivity(intent);
+            }
+        });
+        Button btnCart = findViewById(R.id.btnMapx);
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, Cart.class);
                 startActivity(intent);
             }
         });
