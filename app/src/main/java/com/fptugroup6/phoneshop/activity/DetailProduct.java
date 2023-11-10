@@ -93,10 +93,10 @@ public class DetailProduct extends AppCompatActivity {
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Call<Boolean> call = apiService.AddToCart("Khang","1","2");
-//                call.enqueue(new Callback<Boolean>() {
-//                    @Override
-//                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                Call<Boolean> call = apiService.AddToCart("Khang","1","2");
+                call.enqueue(new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                         Toast.makeText(DetailProduct.this, "Bạn vừa add 1 sản phẩm vào giỏ hàng", Toast.LENGTH_LONG);
                         MyNotificationChanel.sendNotification(DetailProduct.this, Cart.class);
 
@@ -111,7 +111,7 @@ public class DetailProduct extends AppCompatActivity {
 
             }
         });
-    }
+        }
 
     private ArrayList<String> setData(Phone phone) {
         ArrayList<String> list = new ArrayList<>();

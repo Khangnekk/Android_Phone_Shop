@@ -80,20 +80,19 @@ public class Register extends AppCompatActivity {
         call.enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
-                    Toast.makeText(getApplicationContext(),"SignUp Success", Toast.LENGTH_LONG).show();
+                if (response.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "SignUp Success", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent();
                     intent.setClass(Register.this, Login.class);
                     startActivity(intent);
-                }else{
-                    Toast.makeText(getApplicationContext(),"SignUp Fail", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "SignUp Fail", Toast.LENGTH_LONG).show();
                 }
-
             }
-
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
                 Toast.makeText(getApplicationContext(),t.toString(), Toast.LENGTH_LONG).show();
             }
         });
-    }
+    };
 }
