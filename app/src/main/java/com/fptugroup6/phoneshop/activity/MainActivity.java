@@ -1,10 +1,13 @@
 package com.fptugroup6.phoneshop.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -14,6 +17,7 @@ import com.fptugroup6.phoneshop.R;
 import com.fptugroup6.phoneshop.api.ApiClient;
 import com.fptugroup6.phoneshop.api.ApiService;
 import com.fptugroup6.phoneshop.model.Phone;
+import com.fptugroup6.phoneshop.session.MySharedPreferences;
 
 import java.util.ArrayList;
 
@@ -23,6 +27,8 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements SelectListener {
     ApiService apiService;
+
+    //SharedPreferences sharedPreferences =  getSharedPreferences("session", Context.MODE_PRIVATE);
 //    public List<Phone> phones = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,13 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
         RecyclerView rv = findViewById(R.id.recyclerviewMain);
         apiService = ApiClient.getClient().create(ApiService.class);
         ArrayList<Phone> PhonesList = getPhones();
+    }
+
+    private void set_Session(String username){
+        SharedPreferences sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("Username", username); // Replace "key" and "value" with your own data
+        editor.apply();
     }
 
     private ArrayList<Phone> getPhones() {
@@ -46,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
                 }else{
                     Toast.makeText(getApplicationContext(),"Get Data: Fail ", Toast.LENGTH_LONG).show();
                 }
+
             }
 
             @Override

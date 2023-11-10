@@ -2,19 +2,49 @@ package com.fptugroup6.phoneshop.model;
 
 public class Product_CartDetail {
 
-    private String imageUrl;
+    private int orderDetailId;
+    private int orderId;
+    private int phoneId;
     private String modelName;
     private long price;
+    private int quantity;
+    private String imageUrl;
     private String description;
 
-    private int quantity;
 
-    public Product_CartDetail(String imageUrl, String modelName, long price, String description, int quantity) {
+    public Product_CartDetail(int orderDetailId,int orderId,int phoneId, String imageUrl, String modelName, long price, String description, int quantity) {
+        this.orderDetailId = orderDetailId;
+        this.orderId = orderId;
+        this.phoneId = phoneId;
         this.imageUrl = imageUrl;
         this.modelName = modelName;
         this.price = price;
         this.description = description;
         this.quantity = quantity;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public int getPhoneId() {
+        return phoneId;
+    }
+
+    public void setPhoneId(int phoneId) {
+        this.phoneId = phoneId;
+    }
+
+    public int getOrderDetailId() {
+        return orderDetailId;
+    }
+
+    public void setOrderDetailId(int orderDetailId) {
+        this.orderDetailId = orderDetailId;
     }
 
     public Product_CartDetail() {

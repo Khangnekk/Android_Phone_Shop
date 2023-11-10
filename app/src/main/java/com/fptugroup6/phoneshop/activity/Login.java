@@ -15,6 +15,7 @@ import com.fptugroup6.phoneshop.R;
 import com.fptugroup6.phoneshop.api.ApiClient;
 import com.fptugroup6.phoneshop.api.ApiService;
 import com.fptugroup6.phoneshop.model.Account;
+import com.fptugroup6.phoneshop.session.MySharedPreferences;
 
 import android.widget.Toast;
 
@@ -56,13 +57,11 @@ public class Login extends AppCompatActivity {
             public void onResponse(Call<Account> call, Response<Account> response) {
                 try{
                     if(response.isSuccessful()){
-                        SharedPreferences sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("Username", response.body().getUsername()); // Replace "key" and "value" with your own data
-                        editor.apply();
                         if(response.body().getUsername()!=null){
                             Toast.makeText(getApplicationContext(),"Login Success: "+ response.body().getEmail(), Toast.LENGTH_LONG).show();
                             Intent intent = new Intent();
+                            MySharedPreferences mySharedPreferences = MySharedPreferences.getInstance(getApplicationContext());
+                            mySharedPreferences.saveData("Username", response.body().getUsername());
                             intent.setClass(Login.this, MainActivity.class);
                             startActivity(intent);
                         }else{
@@ -75,6 +74,7 @@ public class Login extends AppCompatActivity {
                 catch (Exception ex){
                     Toast.makeText(getApplicationContext(),"Login Fail", Toast.LENGTH_LONG).show();
                 }
+
             }
 
             @Override
@@ -84,7 +84,12 @@ public class Login extends AppCompatActivity {
             }
         });
     }
-
+    private void set_Session(String username){
+        SharedPreferences sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("Username", username); // Replace "key" and "value" with your own data
+        editor.apply();
+    }
     public void signup(View view) {
         startActivity(new Intent(Login.this,Register.class));
     }

@@ -88,6 +88,7 @@ public class Register extends AppCompatActivity {
                 }else{
                     Toast.makeText(getApplicationContext(),"SignUp Fail", Toast.LENGTH_LONG).show();
                 }
+
             }
 
             @Override
