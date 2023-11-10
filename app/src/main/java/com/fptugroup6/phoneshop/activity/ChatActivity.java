@@ -10,8 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.fptugroup6.phoneshop.R;
-import com.fptugroup6.phoneshop.model.msgModelClass;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Date;
 
