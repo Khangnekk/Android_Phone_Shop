@@ -60,15 +60,21 @@ public class Cart extends AppCompatActivity {
         TextView payment;
         payment = findViewById(R.id.btnPaymentAll);
         MySharedPreferences sharedPreferences = MySharedPreferences.getInstance(getApplicationContext());
+        Log.e("total_payment",total_payment.getText().toString());
+        String txtAmount = total_payment.getText().toString().replace(".", "").trim();
+        PaymentInformationModel pim = new PaymentInformationModel();
+        pim.setOrderType("OP_BUY");
+        pim.setName("Payment all cart");
+        Log.e("TestLong", txtAmount);
+        pim.setAmount(Long.parseLong(txtAmount));
+        pim.setOrderDescription("Pay for smartphone purchases");
+
         payment.setOnClickListener(new View.OnClickListener() {
 
             //            Call<Link> call = apiService.createPayment(pim);
             @Override
             public void onClick(View v) {
-                TextView total_payment;
-
-                total_payment = findViewById(R.id.Totalnek);
-
+                Log.e("total_payment",total_payment.getText().toString());
                 String txtAmount = total_payment.getText().toString().replace(".", "").trim();
                 PaymentInformationModel pim = new PaymentInformationModel();
                 pim.setOrderType("OP_BUY");
@@ -77,6 +83,7 @@ public class Cart extends AppCompatActivity {
                 pim.setAmount(Long.parseLong(txtAmount));
                 pim.setOrderDescription("Pay for smartphone purchases");
                 Call<Link> call = apiService.createPayment(pim);
+                Log.e("TestLong", pim.getAmount()+"");
                 call.enqueue(new Callback<Link>() {
                     @Override
                     public void onResponse(Call<Link> call, Response<Link> response) {

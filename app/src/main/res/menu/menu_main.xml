@@ -5,4 +5,8 @@
         android:id="@+id/optionmap"
         android:title="Map"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/optionLogout"
+        android:title="Logout"
+        app:showAsAction="always"/>
 </menu>

@@ -18,6 +18,7 @@ import com.fptugroup6.phoneshop.R;
 import com.fptugroup6.phoneshop.api.ApiClient;
 import com.fptugroup6.phoneshop.api.ApiService;
 import com.fptugroup6.phoneshop.model.Phone;
+import com.fptugroup6.phoneshop.session.MySharedPreferences;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,13 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
         if (item.getItemId() == R.id.optionmap) {
             Intent intent = new Intent();
             intent.setClass(MainActivity.this,Map_Activity.class);
+            startActivity(intent);
+        }
+        if (item.getItemId() == R.id.optionLogout) {
+            Intent intent = new Intent();
+            MySharedPreferences shareKey = MySharedPreferences.getInstance(MainActivity.this);
+            shareKey.saveData("Username",null);
+            intent.setClass(MainActivity.this,Login.class);
             startActivity(intent);
         }
         return true;

@@ -95,6 +95,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
             @Override
             public void onClick(View v) {
                 PhoneList.remove(index);
+                Cart.displayTotal(calculator(PhoneList));
                 notifyDataSetChanged();
                 Call<Task> call = apiService.Delete_cart(phone.getOrderDetailId());
                 call.enqueue(new Callback<Task>() {
