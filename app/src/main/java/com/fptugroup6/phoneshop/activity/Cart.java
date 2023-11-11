@@ -36,6 +36,27 @@ public class Cart extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
         apiService = ApiClient.getClient().create(ApiService.class);
 
+        Button btnHome = findViewById(R.id.btnHome);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Cart.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnChat = findViewById(R.id.btnChat);
+        btnChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(Cart.this, ChatActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         TextView payment;
         payment = findViewById(R.id.btnPaymentAll);
         MySharedPreferences sharedPreferences = MySharedPreferences.getInstance(getApplicationContext());
@@ -82,6 +103,7 @@ public class Cart extends AppCompatActivity {
 
     private void get_phone_cart_detail(MySharedPreferences share) {
         Call<ArrayList<Product_CartDetail>> call = apiService.GetOrderDetail(share.getData("Username", ""));
+        Log.e("Username In Login",share.getData("Username",""));
 //        Call<ArrayList<Product_CartDetail>> call = apiService.GetOrderDetail("Khang");
         call.enqueue(new Callback<ArrayList<Product_CartDetail>>() {
             @Override

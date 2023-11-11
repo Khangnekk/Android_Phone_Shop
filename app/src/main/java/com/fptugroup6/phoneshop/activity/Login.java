@@ -30,7 +30,6 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-
         TextView txtUsername = findViewById(R.id.txtUsername);
         TextView txtPassword = findViewById(R.id.txtPassword);
         Button btnSignIn = findViewById(R.id.btnSignIn);
@@ -58,10 +57,12 @@ public class Login extends AppCompatActivity {
                 try{
                     if(response.isSuccessful()){
                         if(response.body().getUsername()!=null){
+                            Log.e("AccountAfterRegisterTest",response.body().getUsername());
                             Toast.makeText(getApplicationContext(),"Login Success: "+ response.body().getEmail(), Toast.LENGTH_LONG).show();
                             Intent intent = new Intent();
                             MySharedPreferences mySharedPreferences = MySharedPreferences.getInstance(getApplicationContext());
                             mySharedPreferences.saveData("Username", response.body().getUsername());
+                            Log.e("Username In Login",mySharedPreferences.getData("Username",""));
                             intent.setClass(Login.this, MainActivity.class);
                             startActivity(intent);
                         }else{
