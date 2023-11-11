@@ -30,12 +30,23 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
     private ArrayList<Product_CartDetail> PhoneList = new ArrayList<>();
     private Context context;
     private ApiService apiService = ApiClient.getClient().create(ApiService.class);
+    long total_amount = 0;
+
 
     public AdapterCart(ArrayList<Product_CartDetail> phoneList, Context context) {
         this.PhoneList = phoneList;
         this.context = context;
     }
+    public interface OnItemRemovedListener {
+        default void onItemRemoved() {
 
+        }
+    }
+    private OnItemRemovedListener onItemRemovedListener;
+
+    public void setOnItemRemovedListener(OnItemRemovedListener listener) {
+        this.onItemRemovedListener = listener;
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -56,10 +67,16 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
             @Override
             public void onClick(View v) {
                 int amount = Integer.parseInt(holder.amount.getText().toString())-1;
-                holder.price.setText(String.valueOf(amount* phone.getPrice()));
+                holder.price.setText(String.valueOf(amount * phone.getPrice()));
                 holder.amount.setText(String.valueOf(amount));
+                phone.setQuantity(phone.getQuantity()-1);
+
+                Cart.displayTotal(calculator(PhoneList));
+                notifyDataSetChanged();
             }
         });
+
+
 
         holder.increment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +84,8 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
                 int amount = Integer.parseInt(holder.amount.getText().toString())+1;
                 holder.price.setText(String.valueOf(amount* phone.getPrice()));
                 holder.amount.setText(String.valueOf(amount));
+                calculateTotalAmount();
+                notifyDataSetChanged();
             }
         });
 
@@ -95,12 +114,37 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
             }
         });
     }
-
+    public long calculator(ArrayList<Product_CartDetail> list){
+        long total = 0;
+        for(int i = 0; i < list.size();i++){
+            total += list.get(i).getQuantity() * list.get(i).getPrice();
+        }
+        return total;
+    }
     @Override
     public int getItemCount() {
         return PhoneList.size();
     }
 
+    public void  calculateTotalAmount(){
+
+        total_amount  = 0;
+        for (Product_CartDetail product : PhoneList) {
+            total_amount += product.getQuantity()*product.getPrice();
+        }
+        if (onTotalAmountChangedListener != null) {
+            onTotalAmountChangedListener.onTotalAmountChanged(total_amount);
+        }
+    }
+    public interface OnTotalAmountChangedListener {
+        void onTotalAmountChanged(double newTotalAmount);
+    }
+
+    private OnTotalAmountChangedListener onTotalAmountChangedListener;
+
+    public void setOnTotalAmountChangedListener(OnTotalAmountChangedListener listener) {
+        this.onTotalAmountChangedListener = listener;
+    }
     public class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView imageView;
         private ImageView button_delete;

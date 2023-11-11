@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -101,6 +102,9 @@ public class DetailProduct extends AppCompatActivity {
                 Call<Boolean> call = apiService.AddToCart(mySharedPreferences.getData("Username","")
                         ,phone.getPhoneId()
                         ,Integer.parseInt(amout.getText().toString()));
+
+                Log.d("username in Add to cart",mySharedPreferences.getData("Username", ""));
+
                 call.enqueue(new Callback<Boolean>() {
                     @Override
                     public void onResponse(Call<Boolean> call, Response<Boolean> response) {

@@ -62,6 +62,8 @@ public class Login extends AppCompatActivity {
                             Intent intent = new Intent();
                             MySharedPreferences mySharedPreferences = MySharedPreferences.getInstance(getApplicationContext());
                             mySharedPreferences.saveData("Username", response.body().getUsername());
+                            Log.d("username in LOGIN",mySharedPreferences.getData("Username", ""));
+
                             intent.setClass(Login.this, MainActivity.class);
                             startActivity(intent);
                         }else{

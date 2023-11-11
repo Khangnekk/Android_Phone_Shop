@@ -30,7 +30,7 @@ import retrofit2.Response;
 public class Cart extends AppCompatActivity {
 
     ApiService apiService;
-    TextView total_payment;
+    static TextView total_payment;
     TextView payment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +52,9 @@ public class Cart extends AppCompatActivity {
         get_phone_cart_detail(sharedPreferences);
     }
     private void get_phone_cart_detail(MySharedPreferences share){
-        //Call<ArrayList<Product_CartDetail>> call = apiService.GetOrderDetail(share.getData("Username", ""));
-        Call<ArrayList<Product_CartDetail>> call = apiService.GetOrderDetail("Khang");
+        Call<ArrayList<Product_CartDetail>> call = apiService.GetOrderDetail(share.getData("Username", ""));
+        Log.d("username in cart",share.getData("Username", ""));
+        //Call<ArrayList<Product_CartDetail>> call = apiService.GetOrderDetail("Khang");
         call.enqueue(new Callback<ArrayList<Product_CartDetail>>() {
             @Override
             public void onResponse(Call<ArrayList<Product_CartDetail>> call, Response<ArrayList<Product_CartDetail>> response) {
@@ -79,6 +80,10 @@ public class Cart extends AppCompatActivity {
         AdapterCart adapterCart = new AdapterCart(list, Cart.this );
         rv.setLayoutManager(new GridLayoutManager(Cart.this, 1));
         rv.setAdapter(adapterCart);
+    }
+
+    public static void displayTotal(long total){
+        total_payment.setText(String.valueOf(total));
     }
 
 }
