@@ -35,7 +35,7 @@ public class Cart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         apiService = ApiClient.getClient().create(ApiService.class);
-
+        total_payment = findViewById(R.id.Totalnek);
         Button btnHome = findViewById(R.id.btnHome);
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +134,7 @@ public class Cart extends AppCompatActivity {
     }
 
     public static void displayTotal(long total){
+
         total_payment.setText(String.valueOf(total));
     }
 

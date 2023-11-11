@@ -82,9 +82,11 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
             @Override
             public void onClick(View v){
                 int amount = Integer.parseInt(holder.amount.getText().toString())+1;
-                holder.price.setText(String.valueOf(amount* phone.getPrice()));
+                holder.price.setText(String.valueOf(amount * phone.getPrice()));
                 holder.amount.setText(String.valueOf(amount));
-                calculateTotalAmount();
+                phone.setQuantity(phone.getQuantity()+1);
+
+                Cart.displayTotal(calculator(PhoneList));
                 notifyDataSetChanged();
             }
         });
