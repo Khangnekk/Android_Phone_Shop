@@ -54,13 +54,13 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/btnMap"
+                android:id="@+id/btnMapx"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/colorPrimary"
                 android:gravity="center"
-                android:text="Map"
+                android:text="Cart"
                 android:textAlignment="center"
                 android:textColor="@color/a"
                 android:textSize="24sp" />

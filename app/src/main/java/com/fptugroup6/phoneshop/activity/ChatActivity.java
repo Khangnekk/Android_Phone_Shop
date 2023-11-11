@@ -21,6 +21,7 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         Button btnHome = findViewById(R.id.btnHome);
+        Button btnCart = findViewById(R.id.btnMap);
         Button btnSendMessage = findViewById(R.id.btnSendMessage);
         EditText txtMessage = findViewById(R.id.txtMessage);
         // Button Home Clicked
@@ -29,6 +30,14 @@ public class ChatActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(ChatActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(ChatActivity.this, Cart.class);
                 startActivity(intent);
             }
         });

@@ -1,7 +1,6 @@
 package com.fptugroup6.phoneshop.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,19 +8,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.fptugroup6.phoneshop.R;
 import com.fptugroup6.phoneshop.api.ApiClient;
 import com.fptugroup6.phoneshop.api.ApiService;
 import com.fptugroup6.phoneshop.model.Phone;
-import com.fptugroup6.phoneshop.session.MySharedPreferences;
 
 import java.util.ArrayList;
 
@@ -41,14 +37,9 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.option_demo_bill) {
+        if (item.getItemId() == R.id.optionmap) {
             Intent intent = new Intent();
-            intent.setClass(getApplicationContext(),BillingActivity.class);
-            startActivity(intent);
-        }
-        if (item.getItemId() == R.id.option_map_1) {
-            Intent intent = new Intent();
-            intent.setClass(getApplicationContext(),Map_Activity.class);
+            intent.setClass(MainActivity.this,Map_Activity.class);
             startActivity(intent);
         }
         return true;
@@ -65,12 +56,22 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
         RecyclerView rv = findViewById(R.id.recyclerviewMain);
         apiService = ApiClient.getClient().create(ApiService.class);
         ArrayList<Phone> PhonesList = getPhones();
+
         Button btnChat = findViewById(R.id.btnChat);
         btnChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, ChatActivity.class);
+                startActivity(intent);
+            }
+        });
+        Button btnCart = findViewById(R.id.btnMapx);
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, Cart.class);
                 startActivity(intent);
             }
         });

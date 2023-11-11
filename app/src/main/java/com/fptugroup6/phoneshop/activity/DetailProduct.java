@@ -24,6 +24,8 @@ import android.widget.Toast;
 import com.fptugroup6.phoneshop.R;
 import com.fptugroup6.phoneshop.api.ApiClient;
 import com.fptugroup6.phoneshop.api.ApiService;
+import com.fptugroup6.phoneshop.model.Link;
+import com.fptugroup6.phoneshop.model.PaymentInformationModel;
 import com.fptugroup6.phoneshop.model.Phone;
 import com.fptugroup6.phoneshop.session.MySharedPreferences;
 import com.squareup.picasso.Picasso;
@@ -51,6 +53,36 @@ public class DetailProduct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_product);
+
+        Button btnChat = findViewById(R.id.btnChatDp1);
+        btnChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(DetailProduct.this, ChatActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnHome = findViewById(R.id.btnHomeDp1);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(DetailProduct.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnCart = findViewById(R.id.btnMapDp1);
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(DetailProduct.this, Cart.class);
+                startActivity(intent);
+            }
+        });
         apiService = ApiClient.getClient().create(ApiService.class);
         MySharedPreferences mySharedPreferences = MySharedPreferences.getInstance(getApplicationContext());
 
@@ -95,6 +127,38 @@ public class DetailProduct extends AppCompatActivity {
             }
         });
 
+        PaymentInformationModel pim = new PaymentInformationModel();
+        pim.setOrderType("OP_BUY");
+        pim.setName("Payment for "+phone.getModelName());
+        pim.setAmount(phone.getPrice());
+        pim.setOrderDescription("Pay for smartphone purchases");
+
+        buyNow.setOnClickListener(new View.OnClickListener() {
+            Call<Link> call = apiService.createPayment(pim);
+            String dummy = "https: //sandbox.vnpayment.vn/paymentv2/vpcpay.html?vnp_Amount=1200000000&vnp_Command=pay&vnp_CreateDate=20231109073440&vnp_CurrCode=VND&vnp_IpAddr=192.168.1.3&vnp_Locale=vn&vnp_OrderInfo=ProductName+Mua+hang+12000000&vnp_OrderType=OP_BUY&vnp_ReturnUrl=http%3A%2F%2F192.168.1.3%3A7017%2Fapi%2Fvnpay&vnp_TmnCode=G6A4MW0R&vnp_TxnRef=638351120800499465&vnp_Version=2.1.0&vnp_SecureHash=5b20f61a22d41e4b4171750bae23fd8d032c380de535c70934b52b6d1b7c18c46b3fad060970e1382088597161056547e38c00bb1d643adaa7df6c039752e0cf";
+            @Override
+            public void onClick(View v) {
+                call.enqueue(new Callback<Link>() {
+                    @Override
+                    public void onResponse(Call<Link> call, Response<Link> response) {
+                        if(response.isSuccessful()){
+                            Intent intent = new Intent();
+                            String apiUrl = response.body().getValue();
+                            intent.putExtra("url", apiUrl);
+                            intent.setClass(DetailProduct.this, Payment.class);
+                            startActivity(intent);
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Link> call, Throwable t) {
+//                        Log.e("PIM1X", t.getMessage());
+                    }
+                });
+            }
+        });
+
         // Add to carrt
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,13 +188,12 @@ public class DetailProduct extends AppCompatActivity {
 
 
             }
-        });
         }
+        );}
     public void sendNotification() {
         Intent intent = new Intent(DetailProduct.this, Cart.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(DetailProduct.this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-
         NotificationCompat.Builder builder = new NotificationCompat.Builder(DetailProduct.this, MyNotificationChanel.CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentTitle("Shop Phone")
@@ -153,6 +216,7 @@ public class DetailProduct extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+
         notificationManager.notify(1, builder.build());
     }
     private ArrayList<String> setData(Phone phone) {

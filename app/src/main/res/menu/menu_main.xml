@@ -2,11 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/option_demo_bill"
-        android:title="Demo_Billing"
-        app:showAsAction="always"/>
-    <item
-        android:id="@+id/option_map_1"
+        android:id="@+id/optionmap"
         android:title="Map"
         app:showAsAction="always"/>
 </menu>
